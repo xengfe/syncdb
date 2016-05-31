@@ -5,15 +5,15 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class DbUtil extends Base {
 
-	private static String[] columnNames = { "C_ID", "C_UID", "C_DSYNC",
-			"C_TIME", "C_GLU", "C_FLAG", "C_RES", "C_CTYPE", "C_UPLOAD",
-			"C_CreateTime", "C_ClientIP" };
+	private static String[] columnNames = { "C_ID"};
 
 	public static Connection connetion(String url, String username, String pwd) {
 		Connection conn = null;
@@ -41,13 +41,13 @@ public class DbUtil extends Base {
 				String cid = rs.getString("C_ID");
 				String uid = rs.getString("C_UID");
 				long dsync = rs.getLong("C_DSYNC");
-				String time = rs.getString("C_TIME");
+				Timestamp time = rs.getTimestamp("C_TIME");
 				double glu = rs.getDouble("C_GLU");
 				short flag = rs.getShort("C_FLAG");
 				short res = rs.getShort("C_RES");
 				short ctype = rs.getShort("C_CTYPE");
 				short upload = rs.getShort("C_UPLOAD");
-				String creattime = rs.getString("C_CreateTime");
+				Timestamp creattime = rs.getTimestamp("C_CreateTime");
 				String ip = rs.getString("C_ClientIP");
 
 				selectResult.add(new Entity(cid, uid, dsync, time, glu, flag,
@@ -92,20 +92,24 @@ public class DbUtil extends Base {
 				String cid = news.get(i).C_ID;
 				String uid = news.get(i).C_UID;
 				long dsync = news.get(i).C_DSYNC;
-				String time = news.get(i).C_TIME;
+				Timestamp time = news.get(i).C_TIME;
 				double glu = news.get(i).C_GLU;
 				short flag = news.get(i).C_FLAG;
 				short res = news.get(i).C_RES;
 				short ctype = news.get(i).C_CTYPE;
 				short upload = news.get(i).C_UPLOAD;
-				String creattime = news.get(i).C_CreateTime;
+				Timestamp creattime = news.get(i).C_CreateTime;
 				String ip = news.get(i).C_ClientIP;
 
-				String sql = "insert into" + dist_table + "values(" + cid + ","
-						+ uid + "," + dsync + "," + time + "," + glu + ","
-						+ flag + "," + res + "," + ctype + "," + upload + ","
-						+ creattime + "," + ip + ")";
-				rs = stmt.executeUpdate(sql, columnNames);
+				String sql = "insert into  "
+						+ dist_table
+						+ " (C_ID,C_UID,C_DSYNC,C_TIME,C_GLU,C_FLAG,C_RES,C_CTYPE,C_UPLOAD,C_CreateTime,C_ClientIP)"
+						+ " values(" + cid + "," + uid + "," + dsync + ","
+						+ getFormatDate(time) + "," + glu + "," + flag + "," + res + ","
+						+ ctype + "," + upload + "," + getFormatDate(creattime) + "," + ip
+						+ ")";
+				System.out.println(sql);
+				rs = stmt.executeUpdate(sql);
 
 				if (rs == 0) {
 					System.out.println("第" + i + "插入成功！");
@@ -130,6 +134,12 @@ public class DbUtil extends Base {
 
 		}
 
+	}
+	
+	public static String getFormatDate(Timestamp timestamp) {
+		SimpleDateFormat hm =new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String time=hm.format(timestamp);
+		return time;
 	}
 
 }

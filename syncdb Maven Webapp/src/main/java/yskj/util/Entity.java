@@ -1,21 +1,23 @@
 package yskj.util;
 
+import java.sql.Timestamp;
+
 public class Entity {
 	
 	public String C_ID;
 	public String C_UID;
 	public long C_DSYNC;
-	public String C_TIME;
+	public Timestamp C_TIME;
 	public double C_GLU;
 	public short C_FLAG;
 	public short C_RES;
 	public short C_CTYPE;
 	public short C_UPLOAD;
-	public String C_CreateTime;
+	public Timestamp C_CreateTime;
 	public String C_ClientIP;
-	public Entity(String c_ID, String c_UID, long c_DSYNC, String c_TIME,
+	public Entity(String c_ID, String c_UID, long c_DSYNC, Timestamp c_TIME,
 			double c_GLU, short c_FLAG, short c_RES, short c_CTYPE,
-			short c_UPLOAD, String c_CreateTime, String c_ClientIP) {
+			short c_UPLOAD, Timestamp c_CreateTime, String c_ClientIP) {
 		super();
 		C_ID = c_ID;
 		C_UID = c_UID;
