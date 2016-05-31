@@ -8,8 +8,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.lang.model.element.NestingKind;
-import javax.swing.text.DefaultEditorKit.InsertBreakAction;
 
 public class DbUtil extends Base {
 

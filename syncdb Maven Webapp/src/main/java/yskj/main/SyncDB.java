@@ -10,14 +10,17 @@ public class SyncDB {
 			@Override
 			public void run() {
 				try {
-					DBManager.save2DistDB();
-					Thread.sleep(60*1000*2);
+					while(true){
+						System.out.println("线程启动...");
+						DBManager.save2DistDB();
+						Thread.sleep(60*1000*2);
+					}
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-				
 			}
 		});
+	
 
 	}
 
