@@ -8,15 +8,15 @@ public class DBManager extends Base {
 	public static List<Entity> compare() {
 		List<Entity> avalbleEntities = new ArrayList<Entity>();
 
-		URL = "";
-		USER = "";
-		PWD = "";
+		URL = "jdbc:mysql://localhost/idevicecloud";
+		USER = "root";
+		PWD = "123456";
 
 		List<Entity> sourceData = DbUtil.select(source_table);
 
-		URL = "";
-		USER = "";
-		PWD = "";
+		URL = "jdbc:mysql://localhost/imobilecloud";
+		USER = "root";
+		PWD = "123456";
 
 		List<Entity> distData = DbUtil.select(dist_table);
 
