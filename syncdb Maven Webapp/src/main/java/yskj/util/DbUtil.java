@@ -104,10 +104,10 @@ public class DbUtil extends Base {
 						+ dist_table
 						+ " (C_ID,C_UID,C_DSYNC,C_TIME,C_GLU,C_FLAG,C_RES,C_CTYPE,C_UPLOAD,C_CreateTime,C_ClientIP)"
 						+ " values(" + cid + "," + uid + "," + dsync + ","
-						+ "STR_TO_DATE('" + getFormatDate(time)
+						+ "STR_TO_DATE('" + DateStrUtl.getFormatDate(time)
 						+ "','%Y-%m-%d %H:%i:%s')" + "," + glu + "," + flag
 						+ "," + res + "," + ctype + "," + upload + ","
-						+ "STR_TO_DATE('" + getFormatDate(creattime)
+						+ "STR_TO_DATE('" + DateStrUtl.getFormatDate(creattime)
 						+ "','%Y-%m-%d %H:%i:%s')" + "," + ip + ")";
 				System.out.println(sql);
 				rs = stmt.executeUpdate(sql);
@@ -137,10 +137,6 @@ public class DbUtil extends Base {
 
 	}
 	
-	public static String getFormatDate(Timestamp timestamp) {
-		SimpleDateFormat hm =new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		String time=hm.format(timestamp);
-		return time;
-	}
+	
 
 }
