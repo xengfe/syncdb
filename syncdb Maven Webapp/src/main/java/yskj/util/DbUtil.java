@@ -13,7 +13,6 @@ import java.util.List;
 
 public class DbUtil extends Base {
 
-	private static String[] columnNames = { "C_ID"};
 
 	public static Connection connetion(String url, String username, String pwd) {
 		Connection conn = null;
@@ -105,9 +104,11 @@ public class DbUtil extends Base {
 						+ dist_table
 						+ " (C_ID,C_UID,C_DSYNC,C_TIME,C_GLU,C_FLAG,C_RES,C_CTYPE,C_UPLOAD,C_CreateTime,C_ClientIP)"
 						+ " values(" + cid + "," + uid + "," + dsync + ","
-						+ getFormatDate(time) + "," + glu + "," + flag + "," + res + ","
-						+ ctype + "," + upload + "," + getFormatDate(creattime) + "," + ip
-						+ ")";
+						+ "STR_TO_DATE('" + getFormatDate(time)
+						+ "','%Y-%m-%d %H:%i:%s')" + "," + glu + "," + flag
+						+ "," + res + "," + ctype + "," + upload + ","
+						+ "STR_TO_DATE('" + getFormatDate(creattime)
+						+ "','%Y-%m-%d %H:%i:%s')" + "," + ip + ")";
 				System.out.println(sql);
 				rs = stmt.executeUpdate(sql);
 
