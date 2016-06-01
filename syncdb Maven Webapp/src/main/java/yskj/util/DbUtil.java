@@ -83,7 +83,7 @@ public class DbUtil extends Base {
 
 		Connection conn = null;
 		Statement stmt = null;
-		int rs = 0;
+		int rs = 0;//返回值是更新的条数
 		try {
 			conn = connetion(URL, USER, PWD);
 			stmt = conn.createStatement();
@@ -113,12 +113,7 @@ public class DbUtil extends Base {
 						+ "','%Y-%m-%d %H:%i:%s')" + "," + ip + ")";
 				System.out.println(sql);
 				rs = stmt.executeUpdate(sql);
-
-				if (rs == 0) {
-					System.out.println("第" + i + "插入成功！");
-				} else {
-					System.out.println("第" + i + "插入失败！");
-				}
+				System.out.println("插入成功！");
 			}
 
 		} catch (Exception e) {
