@@ -6,6 +6,7 @@ public class Entity {
 	
 	public String C_ID;
 	public String C_UID;
+	public String C_DID;
 	public long C_DSYNC;
 	public Timestamp C_TIME;
 	public double C_GLU;
@@ -15,12 +16,14 @@ public class Entity {
 	public short C_UPLOAD;
 	public Timestamp C_CreateTime;
 	public String C_ClientIP;
-	public Entity(String c_ID, String c_UID, long c_DSYNC, Timestamp c_TIME,
-			double c_GLU, short c_FLAG, short c_RES, short c_CTYPE,
-			short c_UPLOAD, Timestamp c_CreateTime, String c_ClientIP) {
+	public Entity(String c_ID, String c_UID, String c_DID, long c_DSYNC,
+			Timestamp c_TIME, double c_GLU, short c_FLAG, short c_RES,
+			short c_CTYPE, short c_UPLOAD, Timestamp c_CreateTime,
+			String c_ClientIP) {
 		super();
 		C_ID = c_ID;
 		C_UID = c_UID;
+		C_DID = c_DID;
 		C_DSYNC = c_DSYNC;
 		C_TIME = c_TIME;
 		C_GLU = c_GLU;
@@ -32,6 +35,8 @@ public class Entity {
 		C_ClientIP = c_ClientIP;
 	}
 	
+	
+
 	
 	
 

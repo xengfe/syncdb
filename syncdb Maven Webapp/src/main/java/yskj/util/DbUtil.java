@@ -39,6 +39,7 @@ public class DbUtil extends Base {
 
 				String cid = rs.getString("C_ID");
 				String uid = rs.getString("C_UID");
+				String did = rs.getString("C_DID");
 				long dsync = rs.getLong("C_DSYNC");
 				Timestamp time = rs.getTimestamp("C_TIME");
 				double glu = rs.getDouble("C_GLU");
@@ -49,7 +50,7 @@ public class DbUtil extends Base {
 				Timestamp creattime = rs.getTimestamp("C_CreateTime");
 				String ip = rs.getString("C_ClientIP");
 
-				selectResult.add(new Entity(cid, uid, dsync, time, glu, flag,
+				selectResult.add(new Entity(cid, uid,did, dsync, time, glu, flag,
 						res, ctype, upload, creattime, ip));
 			}
 
@@ -90,6 +91,7 @@ public class DbUtil extends Base {
 			for (int i = 0; i < news.size(); i++) {
 				String cid = news.get(i).C_ID;
 				String uid = news.get(i).C_UID;
+				String did = news.get(i).C_DID;
 				long dsync = news.get(i).C_DSYNC;
 				Timestamp time = news.get(i).C_TIME;
 				double glu = news.get(i).C_GLU;
@@ -102,8 +104,8 @@ public class DbUtil extends Base {
 
 				String sql = "insert into  "
 						+ dist_table
-						+ " (C_ID,C_UID,C_DSYNC,C_TIME,C_GLU,C_FLAG,C_RES,C_CTYPE,C_UPLOAD,C_CreateTime,C_ClientIP)"
-						+ " values(" + cid + "," + uid + "," + dsync + ","
+						+ " (C_ID,C_UID,C_DID,C_DSYNC,C_TIME,C_GLU,C_FLAG,C_RES,C_CTYPE,C_UPLOAD,C_CreateTime,C_ClientIP)"
+						+ " values(" + cid + "," + uid + "," + did + "," + dsync + ","
 						+ "STR_TO_DATE('" + DateStrUtl.getFormatDate(time)
 						+ "','%Y-%m-%d %H:%i:%s')" + "," + glu + "," + flag
 						+ "," + res + "," + ctype + "," + upload + ","
