@@ -105,12 +105,12 @@ public class DbUtil extends Base {
 				String sql = "insert into  "
 						+ dist_table
 						+ " (C_ID,C_UID,C_DID,C_DSYNC,C_TIME,C_GLU,C_FLAG,C_RES,C_CTYPE,C_UPLOAD,C_CreateTime,C_ClientIP)"
-						+ " values(" + cid + "," + uid + "," + did + "," + dsync + ","
+						+ " values('" + cid + "','" + uid + "','" + did + "','" + dsync + "',"
 						+ "STR_TO_DATE('" + DateStrUtl.getFormatDate(time)
-						+ "','%Y-%m-%d %H:%i:%s')" + "," + glu + "," + flag
-						+ "," + res + "," + ctype + "," + upload + ","
+						+ "','%Y-%m-%d %H:%i:%s')" + ",'" + glu + "','" + flag
+						+ "','" + res + "','" + ctype + "','" + upload + "',"
 						+ "STR_TO_DATE('" + DateStrUtl.getFormatDate(creattime)
-						+ "','%Y-%m-%d %H:%i:%s')" + "," + ip + ")";
+						+ "','%Y-%m-%d %H:%i:%s')" + ",'" + ip + "');";
 				System.out.println(sql);
 				rs = stmt.executeUpdate(sql);
 				System.out.println("插入成功！");
@@ -134,6 +134,31 @@ public class DbUtil extends Base {
 
 	}
 	
-	
+	public static void delete(){
+		Connection conn = null;
+		Statement stmt = null;
+		int rs = 0;//返回值是更新的条数
+		try {
+			conn = connetion(URL, USER, PWD);
+			stmt = conn.createStatement();
+			String sql = "delete from " + source_table;
+			rs = stmt.executeUpdate(sql);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if (stmt != null) {
+					stmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+		}
+
+	}
 
 }
