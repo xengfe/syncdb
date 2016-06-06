@@ -3,6 +3,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import yskj.bean.DataBaseConfigInfo;
+import yskj.bean.Entity;
 
 public class DBManager extends Base {
 

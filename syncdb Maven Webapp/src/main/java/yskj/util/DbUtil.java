@@ -10,6 +10,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import yskj.bean.Entity;
+
 
 public class DbUtil extends Base {
 
