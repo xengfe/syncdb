@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<comment>从数据库配置信息</comment>
+	<entry key="url">jdbc:mysql://localhost/imobilecloud</entry>
+	<entry key="username">*****</entry>
+	<entry key="password">*****</entry>
+	<entry key="first">false</entry>
+</properties>

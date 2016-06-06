@@ -31,9 +31,15 @@ public class DbUtil extends Base {
 		Statement stmt = null;
 		ResultSet rs = null;
 		try {
-			conn = connetion(URL, USER, PWD);
+			conn = connetion(configInfo.url, configInfo.username, configInfo.password);
 			stmt = conn.createStatement();
-			String sql = "select * from " + table;
+			String sql ="";
+			if (configInfo.first.equals("true")) {
+				sql = "select * from " + table ;
+			}else {
+				sql = "select * from " + table + " where C_CreateTime > SUBDATE(CURRENT_TIMESTAMP,INTERVAL 2 HOUR)";
+			}
+			
 			rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 
@@ -85,7 +91,7 @@ public class DbUtil extends Base {
 		Statement stmt = null;
 		int rs = 0;//返回值是更新的条数
 		try {
-			conn = connetion(URL, USER, PWD);
+			conn = connetion(configInfo.url, configInfo.username, configInfo.password);
 			stmt = conn.createStatement();
 
 			for (int i = 0; i < news.size(); i++) {
@@ -139,9 +145,9 @@ public class DbUtil extends Base {
 		Statement stmt = null;
 		int rs = 0;//返回值是更新的条数
 		try {
-			conn = connetion(URL, USER, PWD);
+			conn = connetion(configInfo.url, configInfo.username, configInfo.password);
 			stmt = conn.createStatement();
-			String sql = "delete from " + source_table;
+			String sql = "delete from " + source_table ;
 			rs = stmt.executeUpdate(sql);
 		} catch (Exception e) {
 			e.printStackTrace();

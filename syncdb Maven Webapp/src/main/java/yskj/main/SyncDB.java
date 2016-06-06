@@ -11,7 +11,7 @@ public class SyncDB {
 
 	public static void main(String[] args) {
 		int delay = 0;//毫秒
-		int period = 1000*5;
+		int period = 10 * 1000;//10s
 		
 		Timer timer = new Timer(); 
 		TimerTask task = new TimerTask (){
@@ -20,6 +20,7 @@ public class SyncDB {
 			public void run() {
 				long beginTime = System.currentTimeMillis();
 				DBManager.save2DistDB();
+//				DBManager.deleteTempSourceData();
 				long endTime =System.currentTimeMillis();
 				System.out.println("操作时长：" + (endTime - beginTime) +" 毫秒");
 				

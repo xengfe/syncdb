@@ -2,22 +2,22 @@ package yskj.util;
 import java.util.Iterator;
 import java.util.List;
 
+import yskj.bean.DataBaseConfigInfo;
+
 public class DBManager extends Base {
 
 	public static List<Entity> compare() {
 		
-		URL = "jdbc:mysql://localhost/idevicecloud";
-		USER = "root";
-		PWD = "123456";
+		configInfo = PropertiesXmlFileUtil.readXML("master_database.xml");
 
 		List<Entity> sourceData = DbUtil.select(source_table);
+		System.out.println("sourceData.size="+sourceData.size());
+		
+		configInfo = PropertiesXmlFileUtil.readXML("subordinate_database.xml");
 
-		URL = "jdbc:mysql://localhost/imobilecloud";
-		USER = "root";
-		PWD = "123456";
 
 		List<Entity> distData = DbUtil.select(dist_table);
-		
+		System.out.println("distData.size="+distData.size());
 		for (Iterator<Entity> iter = sourceData.listIterator(); iter.hasNext();) {
 			Entity source = iter.next();
 			for (Entity dist : distData) {
@@ -35,6 +35,11 @@ public class DBManager extends Base {
 
 	public static void save2DistDB() {
 		DbUtil.insert(compare());
+	}
+	
+	
+	public static void deleteTempSourceData(){
+		DbUtil.delete();
 	}
 
 }
